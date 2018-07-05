@@ -1,6 +1,6 @@
 # tioneb-bot
 
-Petit projet de développement d'un bot discord.
+Petit projet de développement d'un bot discord. Codé de manière très moche et plein d'inside jokes.
 
 ## Mise en place
 
