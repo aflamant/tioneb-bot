@@ -65,7 +65,10 @@ bot.on('message', message => {
 
     message.delete().catch(O_o=>{});
     message.channel.send(sayMessage);
+  }
 
+  if (command === 'code') {
+    message.channel.send(':robot: bleep bloop, mon code est accessible en open-source : https://github.com/aflamant/tioneb-bot :kissing_heart:')
   }
 })
 
