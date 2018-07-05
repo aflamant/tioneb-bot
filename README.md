@@ -4,7 +4,7 @@ Petit projet de développement d'un bot discord.
 
 ## Mise en place
 
-Après avoir cloné le dépôt, il faut installer les dépendances avec `npm install`. Ensuite faut ensuité créer un fichier `config.json` sur la racine, sur le modèle de `config.json.example`.
+Après avoir cloné le dépôt, il faut installer les dépendances avec `npm install`. Ensuite faut ensuite créer un fichier `config.json` sur la racine, sur le modèle de `config.json.example`. Pour lancer le bot, il faut exécuter `node index.js`.
 
 ### config.json
 
