@@ -34,9 +34,7 @@ bot.on('message', async message => {
 
   if (message.author.bot) return;
 
-
-
-
+  // TODO: Ajouter réponse aux messages directs
 
   if (message.content.indexOf(config.prefix) !== 0) return;
 
@@ -52,6 +50,7 @@ bot.on('message', async message => {
     const sayMessage = args.join(" ");
 
     message.delete().catch(O_o=>{});
+    message.channel.send(sayMessage);
 
   }
 })
