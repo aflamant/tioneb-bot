@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.3.2"
+    "discord.js": "^11.3.2",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21"
   }
 }

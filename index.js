@@ -1,7 +1,10 @@
 const config = require("./config.json");
 
 const Discord = require('discord.js');
+const moment = require('moment-timezone');
+
 const bot = new Discord.Client();
+moment.locale('fr-fr');
 
 bot.on('ready', () => {
   bot.user.setActivity(config.activity).catch(console.error);
@@ -30,11 +33,22 @@ bot.on('guildMemberAvailable', member => {
 
 })
 
-bot.on('message', async message => {
+bot.on('message', message => {
 
   if (message.author.bot) return;
 
-  // TODO: Ajouter réponse aux messages directs
+  if (message.isMentioned(bot.user)) {
+    let words = message.content.toLowerCase().split(" ");
+
+    if(words.indexOf("heure") > -1 && (words.indexOf("canada") > -1 || words.indexOf("bruno") > -1 || words.indexOf("montreal") > -1) ) {
+      let timeInMontreal = moment().tz('America/Montreal').format('LT');
+      message.channel.send('là il est ' + timeInMontreal + ' chez bruno')
+    } else if (words.indexOf('?') > -1) {
+      message.channel.send('je sais pas');
+    } else {
+      message.channel.send('ok');
+    }
+  }
 
   if (message.content.indexOf(config.prefix) !== 0) return;
 
@@ -43,7 +57,7 @@ bot.on('message', async message => {
 
 
   if (command === 'ping') {
-    msg.channel.send('pong!');
+    message.channel.send('pong!');
   }
 
   if (command === 'say') {
