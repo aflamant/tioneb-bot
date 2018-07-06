@@ -57,6 +57,8 @@ bot.on('message', message => {
 
 
   if (command === 'ping') {
+    console.log(`Reception d'un ping de la part de ${message.author.username} sur le channel ${message.channel.name}`);
+
     message.channel.send('pong!');
   }
 
@@ -65,9 +67,11 @@ bot.on('message', message => {
 
     message.delete().catch(O_o=>{});
     message.channel.send(sayMessage);
+    console.log("Envoi du message '" + sayMessage + `' sur le channel ${message.channel.name} à la demande de ${message.author.username}`);
   }
 
   if (command === 'code') {
+
     message.channel.send(':robot: bleep bloop, mon code est accessible en open-source : https://github.com/aflamant/tioneb-bot :robot:')
   }
 })
