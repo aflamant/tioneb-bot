@@ -15,21 +15,11 @@ bot.on('guildMemberAdd', member => {
 
   const channel = member.guild.channels.find('name', 'general');
 
-  if (!channel) {
-    return;
-  }
+  console.log(`Premiere connexion de ${member} au serveur, envoi du message de bienvenue.`);
 
   channel.send(`Eh salut ${member}, comment tu vas ? Bienvenue chez toi !`);
+
 });
-
-bot.on('guildMemberAvailable', member => {
-
-  if (Math.random() * 100 > 90) {
-    const channel = member.guild.channels.find('name', 'general');
-    channel.send('Eh salut');
-  }
-
-})
 
 bot.on('message', message => {
 
@@ -37,9 +27,13 @@ bot.on('message', message => {
 
   if (message.isMentioned(bot.user)) {
 
-    let words = message.content.toLowerCase().split(" ");
+    console.log('Bot mentionné.');
+
+    let words = message.content.toLowerCase().split(/[\s,.';]+/);
 
     if(words.indexOf("heure") > -1 && (words.indexOf("canada") > -1 || words.indexOf("bruno") > -1 || words.indexOf("montreal") > -1) ) {
+
+      console.log("Requête de l\'heure à Montreal")
 
       let timeInMontreal = moment().tz('America/Montreal').format('LT');
       message.channel.send('là il est ' + timeInMontreal + ' chez bruno')
