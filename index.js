@@ -12,16 +12,14 @@ bot.on('ready', () => {
 })
 
 bot.on('guildMemberAdd', member => {
-  // Send the message to a designated channel on a server:
+
   const channel = member.guild.channels.find('name', 'general');
-  // Do nothing if the channel wasn't found on this server
+
   if (!channel) {
-    console.log('erreur');
-    console.log(channel);
     return;
   }
-  // Send the message, mentioning the member
-  channel.send(`Eh salut ${member}, comment tu vas ?`);
+
+  channel.send(`Eh salut ${member}, comment tu vas ? Bienvenue chez toi !`);
 });
 
 bot.on('guildMemberAvailable', member => {
@@ -38,16 +36,24 @@ bot.on('message', message => {
   if (message.author.bot) return;
 
   if (message.isMentioned(bot.user)) {
+
     let words = message.content.toLowerCase().split(" ");
 
     if(words.indexOf("heure") > -1 && (words.indexOf("canada") > -1 || words.indexOf("bruno") > -1 || words.indexOf("montreal") > -1) ) {
+
       let timeInMontreal = moment().tz('America/Montreal').format('LT');
       message.channel.send('là il est ' + timeInMontreal + ' chez bruno')
-    } else if (words.indexOf('?') > -1) {
+
+    }
+
+    else if (words.indexOf('?') > -1) {
       message.channel.send('je sais pas');
-    } else {
+    }
+    else {
       message.channel.send('ok');
     }
+    return;
+
   }
 
   if (message.content.indexOf(config.prefix) !== 0) return;
@@ -68,7 +74,7 @@ bot.on('message', message => {
   }
 
   if (command === 'code') {
-    message.channel.send(':robot: bleep bloop, mon code est accessible en open-source : https://github.com/aflamant/tioneb-bot :kissing_heart:')
+    message.channel.send(':robot: bleep bloop, mon code est accessible en open-source : https://github.com/aflamant/tioneb-bot :robot:')
   }
 })
 
