@@ -13,6 +13,7 @@
     "ffmpeg-binaries": "^4.0.0",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
-    "node-opus": "^0.3.0"
+    "node-opus": "^0.3.0",
+    "ytdl-core": "^0.24.0"
   }
 }

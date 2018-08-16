@@ -1,5 +1,6 @@
-const fs = require('fs')
-
+const fs = require('fs');
+const yt = require('ytdl-core');
+const config = require('./config.json');
 
 module.exports = {
 
@@ -27,7 +28,6 @@ module.exports = {
 			if (!voiceChannel) return message.reply("connecte toi au vocal !");
 			voiceChannel.join()
       .then(connection => {
-        message.reply("j'arrive");
         resolve(connection)
       })
       .catch(err => reject(err));
@@ -49,9 +49,22 @@ module.exports = {
   },
 
   'play' : (message, args) => {
-    message.delete().catch(O_o=>{});
-    if (!message.guild.voiceConnection) return commands.join(message).then(() => commands.play(message,args));
-    let stream = fs.createReadStream('./test.mp3');
-    message.guild.voiceConnection.playStream(stream);
+    if (!message.guild.voiceConnection) return module.exports.join(message).then(() => module.exports.play(message,args));
+    try {
+      let dispatcher = message.guild.voiceConnection.playStream(yt(args[0], { audioonly: true }), {passes : 2});
+      dispatcher.setVolume(0.7);
+      let collector = message.channel.createCollector(m => m);
+			collector.on('message', m => {
+				if (m.content.startsWith(config.prefix + 'stop')) {
+					message.channel.send("ok j'arrête").then(() => {dispatcher.end();});
+        }
+			});
+      dispatcher.on('end', () => {
+				collector.stop();
+			});
+    } catch (e) {
+      message.reply("j'ai pas trouvé ta vidéo");
+      console.log(e);
+    }
   }
 }
