@@ -49,7 +49,7 @@ module.exports = {
   },
 
   'play' : (message, args) => {
-    if (!message.guild.voiceConnection) return module.exports.join(message).then(() => module.exports.play(message,args));
+    if (!message.guild.voiceConnection) return module.exports.join(message).then(() => module.exports.play(message,args)).catch(console.log);
     try {
       let dispatcher = message.guild.voiceConnection.playStream(yt(args[0], { audioonly: true }), {passes : 2});
       dispatcher.setVolume(0.7);
