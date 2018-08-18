@@ -66,5 +66,11 @@ module.exports = {
       message.reply("j'ai pas trouvé ta vidéo");
       console.log(e);
     }
-  }
+  },
+
+  'help': (message) => {
+    message.delete().catch(O_o=>{});
+    let tosend = ['Voici les commandes auxquelles je sais répondre :','```xl', config.prefix + 'say : "Me faire dire un truc."', 'ATTENTION, LES COMMANDES SUIVANTES SONT EN BÊTA !!',  config.prefix + 'join : "Rejoindre le channel vocal de l\'utilisateur."',	config.prefix + 'play : "Jouer une musique à partir d\'un URL YouTube valide."',	config.prefix + 'stop : "Arrêter la lecture en cours."', config.prefix + 'deco : "Me déconnecter du channel."',	'```'];
+    message.author.send(tosend.join('\n'));
+}
 }
