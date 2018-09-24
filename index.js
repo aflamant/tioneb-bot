@@ -28,10 +28,11 @@ bot.on('message', message => {
 
     console.log('Bot mentionné.');
 
-    if (message.indexOf('?') > -1) { message.channel.send('je sais pas'); }
+    if (message.content.indexOf('?') > -1) { message.channel.send('je sais pas'); }
     else { message.channel.send('ok'); }
     return;
   }
+  
   if (!message.content.startsWith(config.prefix)) return;
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
