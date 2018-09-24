@@ -41,7 +41,7 @@ module.exports = {
         reject();
       }
       else {
-        message.reply("ok je me casse")
+        message.channel.send("ok je me casse");
         message.guild.voiceConnection.disconnect()
         resolve();
       }
