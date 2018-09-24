@@ -51,17 +51,22 @@ module.exports = {
   'play' : (message, args) => {
     if (!message.guild.voiceConnection) return module.exports.join(message).then(() => module.exports.play(message,args)).catch(console.log);
     try {
+
       let dispatcher = message.guild.voiceConnection.playStream(yt(args[0], { audioonly: true }), {passes : 2});
-      dispatcher.setVolume(0.7);
+      dispatcher.setVolume(0.5);
+
       let collector = message.channel.createCollector(m => m);
 			collector.on('message', m => {
 				if (m.content.startsWith(config.prefix + 'stop')) {
 					message.channel.send("ok j'arrête").then(() => {dispatcher.end();});
         }
+
 			});
+
       dispatcher.on('end', () => {
 				collector.stop();
 			});
+
     } catch (e) {
       message.reply("j'ai pas trouvé ta vidéo");
       console.log(e);
@@ -72,5 +77,9 @@ module.exports = {
     message.delete().catch(O_o=>{});
     let tosend = ['Voici les commandes auxquelles je sais répondre :','```xl', config.prefix + 'say : "Me faire dire un truc."', 'ATTENTION, LES COMMANDES SUIVANTES SONT EN BÊTA !!',  config.prefix + 'join : "Rejoindre le channel vocal de l\'utilisateur."',	config.prefix + 'play : "Jouer une musique à partir d\'un URL YouTube valide."',	config.prefix + 'stop : "Arrêter la lecture en cours."', config.prefix + 'deco : "Me déconnecter du channel."',	'```'];
     message.author.send(tosend.join('\n'));
-}
+  },
+
+  'reboot': (msg) => {
+		if (msg.author.id == config.adminID) process.exit();
+	}
 }
