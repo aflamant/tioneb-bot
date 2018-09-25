@@ -28,11 +28,18 @@ bot.on('message', message => {
 
     console.log('Bot mentionné.');
 
+    if (message.content.toLowerCase().indexOf('play despacito')) {
+      commands.play(message, ['https://www.youtube.com/watch?v=kJQP7kiw5Fk'])
+      .then(message.channel.send('Now playing: Luis Fonsi - Despacito ft. Daddy Yankee\n ─────────⚪───── ◄◄⠀▶⠀►►⠀ 3:08 / 4:42 ⠀ ───○ 🔊 ᴴᴰ ⚙️')
+      return;
+    }
+
     if (message.content.indexOf('?') > -1) { message.channel.send('je sais pas'); }
-    else { message.channel.send('ok'); }
+    else { message.channel.send('non'); }
+
     return;
   }
-  
+
   if (!message.content.startsWith(config.prefix)) return;
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
