@@ -86,8 +86,7 @@ module.exports = {
   'reboot': (message) => {
 		if (message.author.id == config.adminID) {
       console.log('Shutting down.');
-      message.reply('allez salut !');
-      process.exit();
+      message.channel.send('oui maître').then(() => { process.exit() });
     } else {
       message.reply("t'as trop cru");
     }
