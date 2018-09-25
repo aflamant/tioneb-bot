@@ -30,7 +30,7 @@ bot.on('message', message => {
 
     if (message.content.toLowerCase().indexOf('play despacito')) {
       commands.play(message, ['https://www.youtube.com/watch?v=kJQP7kiw5Fk'])
-      .then(message.channel.send('Now playing: Luis Fonsi - Despacito ft. Daddy Yankee\n ─────────⚪───── ◄◄⠀▶⠀►►⠀ 3:08 / 4:42 ⠀ ───○ 🔊 ᴴᴰ ⚙️')
+      .then(message.channel.send('Now playing: Luis Fonsi - Despacito ft. Daddy Yankee\n ─────────⚪───── ◄◄⠀▶⠀►►⠀ 3:08 / 4:42 ⠀ ───○ 🔊 ᴴᴰ ⚙️'));
       return;
     }
 
