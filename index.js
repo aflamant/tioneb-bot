@@ -28,7 +28,8 @@ bot.on('message', message => {
 
     console.log('Bot mentionné.');
 
-    if (message.content.toLowerCase().indexOf('play despacito')) {
+    if (message.content.toLowerCase().indexOf('play despacito') ||
+        message.content.toLowerCase().indexOf('joue despacito')) {
       commands.play(message, ['https://www.youtube.com/watch?v=kJQP7kiw5Fk'])
       .then(() => {
         message.channel.send('Now playing: Luis Fonsi - Despacito ft. Daddy Yankee\n ─────────⚪───── ◄◄⠀▶⠀►►⠀ 3:08 / 4:42 ⠀ ───○ 🔊 ᴴᴰ ⚙️')
