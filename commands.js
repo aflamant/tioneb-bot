@@ -49,28 +49,32 @@ module.exports = {
   },
 
   'play' : (message, args) => {
-    if (!message.guild.voiceConnection) return module.exports.join(message).then(() => module.exports.play(message,args)).catch(console.log);
-    try {
+    return new Promise((resolve, reject) => {
+      if (!message.guild.voiceConnection) return module.exports.join(message).then(() => module.exports.play(message,args)).catch(console.log)
+        .catch(err => reject(err));
+      try {
 
-      let dispatcher = message.guild.voiceConnection.playStream(yt(args[0], { audioonly: true }), {passes : 2});
-      dispatcher.setVolume(0.5);
+        let dispatcher = message.guild.voiceConnection.playStream(yt(args[0], { audioonly: true }), {passes : 2});
+        dispatcher.setVolume(0.5);
 
-      let collector = message.channel.createCollector(m => m);
-			collector.on('message', m => {
-				if (m.content.startsWith(config.prefix + 'stop')) {
-					message.channel.send("ok j'arrête").then(() => {dispatcher.end();});
-        }
+        let collector = message.channel.createCollector(m => m);
+        collector.on('message', m => {
+          if (m.content.startsWith(config.prefix + 'stop')) {
+            message.channel.send("ok j'arrête").then(() => {dispatcher.end();});
+          }
 
-			});
+        });
 
-      dispatcher.on('end', () => {
-				collector.stop();
-			});
-
-    } catch (e) {
-      message.reply("j'ai pas trouvé ta vidéo");
-      console.log(e);
-    }
+        dispatcher.on('end', () => {
+          collector.stop();
+        });
+        resolve();
+      } catch (err) {
+        message.reply("j'ai pas trouvé ta vidéo");
+        console.log(e);
+        reject(err);
+      }
+    });
   },
 
   'help': (message) => {
