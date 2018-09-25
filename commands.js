@@ -79,7 +79,12 @@ module.exports = {
     message.author.send(tosend.join('\n'));
   },
 
-  'reboot': (msg) => {
-		if (msg.author.id == config.adminID) process.exit();
+  'reboot': (message) => {
+		if (message.author.id == config.adminID) {
+      console.log('Shutting down.');
+      process.exit();
+    } else {
+      message.reply("t'as trop cru");
+    }
 	}
 }
