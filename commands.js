@@ -71,7 +71,7 @@ module.exports = {
         resolve();
       } catch (err) {
         message.reply("j'ai pas trouvé ta vidéo");
-        console.log(e);
+        console.log(err);
         reject(err);
       }
     });
