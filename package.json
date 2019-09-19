@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.3.2",
+    "discord.js": "^11.5.1",
     "ffmpeg-binaries": "^4.0.0",
-    "moment": "^2.22.2",
-    "moment-timezone": "^0.5.21",
-    "node-opus": "^0.3.0",
-    "ytdl-core": "^0.24.0"
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.26",
+    "node-opus": "^0.3.2",
+    "ytdl-core": "^0.29.7"
   }
 }
