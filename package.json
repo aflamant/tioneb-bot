@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.5.1",
+    "discord.js-commando": "^0.10.0",
     "ffmpeg-binaries": "^4.0.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",

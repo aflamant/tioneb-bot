@@ -4,10 +4,10 @@ const config = require('./config.json');
 
 module.exports = {
 
-  'ping' : (message) => {
-    console.log(`Reception d'un ping de la part de ${message.author.username} sur le channel ${message.channel.name}`);
-    message.channel.send('pong!');
-  },
+  // 'ping' : (message) => {
+  //   console.log(`Reception d'un ping de la part de ${message.author.username} sur le channel ${message.channel.name}`);
+  //   message.channel.send('pong!');
+  // },
 
   'say' : (message, args) => {
     let sayMessage = args.join(" ");
