@@ -18,4 +18,4 @@ class HelpCommand extends commando.Command {
   }
 }
 
-module.exports = HelpCommand;
+// module.exports = HelpCommand;

@@ -11,6 +11,10 @@ class RebootCommand extends commando.Command {
     });
   }
 
+  hasPermission(message) {
+    if (!this.client.isOwner(message.author)) return 'T\'as trop cru !';
+    return true;
+  }
   async run(message, args) {
     if (message.author.id == config.adminID) {
       console.log('Shutting down.');
