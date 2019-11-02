@@ -1,6 +1,7 @@
 const commando = require('discord.js-commando')
 const request = require('request-promise');
 const { OWM_API } = require('../../config.json')
+
 class weatherCommand extends commando.Command {
   constructor(client) {
     super(client, {
@@ -12,8 +13,9 @@ class weatherCommand extends commando.Command {
       args: [
         {
           key: 'location',
-          prompt: 'Tu veux l\'heure où ?',
+          prompt: 'Tu veux la météo de où ?',
           type: 'string',
+          parse: location => location.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
           validate: location => location.length > 0 && location.length < 200
         }
       ]
@@ -23,24 +25,22 @@ class weatherCommand extends commando.Command {
   async run(message, { location }) {
     try {
       let weather = await getWeather(location);
-      message.channel.send('Météo à ' + location + ' : ' + weather);
+      message.channel.send('Météo à ' + location + ' : ' + weather.weather + ', avec une température de ' + weather.temperature + '°C.');
     } catch (error) {
-        message.channel.send('J\'ai pas trouvé ta ville.');
-    }
-
-    
+      message.channel.send('J\'ai pas trouvé ta ville.');
+    } 
   }
 }
 
 async function getWeather(location) {
   url = 'https://api.openweathermap.org/data/2.5/weather?q=' +
-        location + '&appid=' + OWM_API + '&lang=fr';
+        location + '&appid=' + OWM_API + '&lang=fr&units=metric';
   options = {
     method: 'GET',
     uri: url
   };
   let response = await request(options);
-  return JSON.parse(response).weather[0].description;
+  return {'weather': JSON.parse(response).weather[0].description, 'temperature': JSON.parse(response).main.temp};
 }
 
 module.exports = weatherCommand;
