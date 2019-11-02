@@ -6,6 +6,7 @@ class StopCommand extends commando.Command {
     super(client, {
       name: 'stop',
       group: 'music',
+      aliases: ['tg', 'deco', 'leave'],
       memberName: 'stop',
       description: 'Arrêter la lecture de la musique.'
     });
