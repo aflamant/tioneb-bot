@@ -1,5 +1,19 @@
 {
   "token":"",
   "prefix":"",
-  "activity":""
+  "activity":"",
+  "adminID":"",
+  "YOUTUBE_API":"",
+  "OWM_API":"",
+  "music_channel":"",
+  "timezones": {
+    "Region/City1" : [
+      "keyword1",
+      "keyword2",
+    ],
+    "Region/City2" : [
+      "keyword1",
+      "keyword2",
+    ]
+  }
 }
