@@ -6,8 +6,8 @@ class timezoneCommand extends commando.Command {
   constructor(client) {
     super(client, {
       name: 'heure',
-      group: 'simple',
-      memberName: '',
+      group: 'timezone',
+      memberName: 'heure',
       aliases: ['timezone', 'fuseau'],
       description: 'Donne l\'heure chez les gens.'
     });
