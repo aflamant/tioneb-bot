@@ -32,14 +32,4 @@ bot.on('ready', () => {
   console.log('Bot connecté.');
 })
 
-bot.on('guildMemberAdd', member => {
-
-  const channel = member.guild.channels.find('name', 'general');
-
-  console.log(`Premiere connexion de ${member} au serveur, envoi du message de bienvenue.`);
-
-  channel.send(`Eh salut ${member}, comment tu vas ? Bienvenue chez toi !`);
-
-});
-
 bot.login(config.token)
