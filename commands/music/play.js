@@ -118,7 +118,9 @@ function playSong(queue, message) {
           module.exports.dispatcher = dispatcher;
           module.exports.queue = queue;
           voiceChannel = queue[0].voiceChannel;
-          return message.guild.channels.cache.find(channel => channel.name === music_channel).send(`:musical_note:   Now playing: ${queue[0].title} - ${queue[0].duration}`);
+          // console.log(message.client)
+          message.client.channels.fetch(music_channel)
+          .then(channel => channel.send(`:musical_note:   Now playing: ${queue[0].title} - ${queue[0].duration}`));
         })
         .on('finish', () => {
           console.log('Next song');
@@ -127,7 +129,8 @@ function playSong(queue, message) {
             return playSong(queue, message);
           } else {
             isPlaying = false;
-            message.guild.channels.cache.find(channel => channel.name === music_channel).send(`:musical_note:   Fin de la playlist atteinte`);
+            message.client.channels.fetch(music_channel)
+          .then(channel => channel.send(`:musical_note:   Fin de la playlist atteinte`);
             console.log('Reached the end of the playlist, leaving voice channel.');
             return voiceChannel.leave();
           }
