@@ -37,6 +37,8 @@ module.exports = class PlayCommand extends commando.Command {
           .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
         const id = query[2].split(/[^0-9a-z_\-]/i)[0];
         const video = await youtube.getVideoByID(id);
+
+
       
 
         if (video.raw.snippet.liveBroadcastContent === 'live')
@@ -116,7 +118,7 @@ function playSong(queue, message) {
           module.exports.dispatcher = dispatcher;
           module.exports.queue = queue;
           voiceChannel = queue[0].voiceChannel;
-          return message.guild.channels.find(channel => channel.name === music_channel).send(`:musical_note:   Now playing: ${queue[0].title} - ${queue[0].duration}`);
+          return message.guild.channels.cache.find(channel => channel.name === music_channel).send(`:musical_note:   Now playing: ${queue[0].title} - ${queue[0].duration}`);
         })
         .on('finish', () => {
           console.log('Next song');
@@ -125,14 +127,13 @@ function playSong(queue, message) {
             return playSong(queue, message);
           } else {
             isPlaying = false;
-            message.guild.channels.find(channel => channel.name === music_channel).send(`:musical_note:   Fin de la playlist atteinte`);
+            message.guild.channels.cache.find(channel => channel.name === music_channel).send(`:musical_note:   Fin de la playlist atteinte`);
             console.log('Reached the end of the playlist, leaving voice channel.');
             return voiceChannel.leave();
           }
         })
         .on('error', e => {
-          message.guild.defaultChannel.send('Elle marche pas cette musique !');
-          return console.log(e);
+          message.reply('oups ça a pas marché')
         });
     })
     .catch(err => {
