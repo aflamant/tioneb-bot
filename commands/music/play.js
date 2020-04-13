@@ -38,9 +38,6 @@ module.exports = class PlayCommand extends commando.Command {
         const id = query[2].split(/[^0-9a-z_\-]/i)[0];
         const video = await youtube.getVideoByID(id);
 
-
-      
-
         if (video.raw.snippet.liveBroadcastContent === 'live')
           return message.channel.send('Je sais pas faire les live');
         
@@ -130,13 +127,17 @@ function playSong(queue, message) {
           } else {
             isPlaying = false;
             message.client.channels.fetch(music_channel)
-          .then(channel => channel.send(`:musical_note:   Fin de la playlist atteinte`);
+          .then(channel => channel.send(`:musical_note:   Fin de la playlist atteinte`));
             console.log('Reached the end of the playlist, leaving voice channel.');
             return voiceChannel.leave();
           }
         })
         .on('error', e => {
+          queue[0].voiceChannel.leave()
           message.reply('oups ça a pas marché')
+          isPlaying = false;
+          queue.length = 0;
+          console.log(e);
         });
     })
     .catch(err => {
