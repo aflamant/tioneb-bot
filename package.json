@@ -13,7 +13,7 @@
     "discord.js-commando": "github:discordjs/Commando",
     "ffmpeg-static": "^4.1.1",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.28",
+    "moment-timezone": "^0.5.35",
     "node-opus": "^0.3.3",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
