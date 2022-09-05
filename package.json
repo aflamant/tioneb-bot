@@ -12,7 +12,7 @@
     "discord.js": "github:discordjs/discord.js#master",
     "discord.js-commando": "github:discordjs/Commando",
     "ffmpeg-static": "^4.1.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.28",
     "node-opus": "^0.3.3",
     "request": "^2.88.2",
